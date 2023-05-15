@@ -23,6 +23,7 @@ print(user)
 
 import streamlit as st
 import nltk
+nltk.download('punkt')
 import re
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
@@ -80,6 +81,10 @@ def main():
             st.write("Sentiment: neutral 😐")    
         else:
             st.write("Sentiment: negative ☹️")
+     if st.button("Analyze"):
+        sentiment = classify_text(text, language)
+        st.write(f"Sentiment: {sentiment}")
+
 
 if __name__ == "__main__":
     main()
