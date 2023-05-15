@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import os
-# from huggingface_hub import HfApi, HfFolder
+from huggingface_hub import HfApi, HfFolder
 
 token = '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'
 os.environ["HUGGINGFACE_TOKEN"] = token
