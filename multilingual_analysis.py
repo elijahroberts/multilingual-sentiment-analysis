@@ -71,26 +71,25 @@ def main():
     st.title("Multilingual Sentiment Analysis")
     language = st.selectbox("Select language", ["English", "French", "German", "Spanish"], key = 'language_select_4')
     text_input = st.text_input("Enter text to analyze:", key = 'text_input_4')
-    if text_input:
-        cleaned_text = clean_text(text_input, language)
-        model, tokenizer = load_model(language)
-        pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
-        result = pipeline(cleaned_text)[0]
-        label = result['label']
-        if label == 'LABEL_0':
-            st.write("Sentiment: positive 😄")
-        elif label == 'LABEL_2':
-            st.write("Sentiment: neutral 😐")    
-        else:
-            st.write("Sentiment: negative ☹️")
 
     if st.button("Analyze"):  # Corrected indentation
-        sentiment = classify_text(text, language)
-        st.write(f"Sentiment: {sentiment}")
+        if text_input:
+            cleaned_text = clean_text(text_input, language)
+            model, tokenizer = load_model(language)
+            pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
+            result = pipeline(cleaned_text)[0]
+            label = result['label']
+            if label == 'LABEL_0':
+                st.write("Sentiment: positive 😄")
+            elif label == 'LABEL_2':
+                st.write("Sentiment: neutral 😐")    
+            else:
+                st.write("Sentiment: negative ☹️")
 
 
 if __name__ == "__main__":
     main()
+
 
 
 
