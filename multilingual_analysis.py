@@ -47,6 +47,13 @@ def load_model(language):
     
     return model, tokenizer
 
+def classify_text(text, language):
+    model, tokenizer = get_model_and_tokenizer(language)
+    inputs = tokenizer(text, padding=True, truncation=True, max_length=128, return_tensors="pt")
+    outputs = model(**inputs)
+    predictions = outputs.logits.argmax(axis=1)
+    return predictions.item()
+
 def clean_text(text, language):
     sentences = nltk.sent_tokenize(text.lower())
     lemmatizer = WordNetLemmatizer()
