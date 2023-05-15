@@ -40,10 +40,10 @@ def get_model_and_tokenizer(language):
 def main():
     st.title("Multilingual Review Sentiment Analysis")
 
-    language = st.selectbox('Select language', ['English', 'French', 'German', 'Spanish'])
+    language = st.selectbox('Select language', ['English', 'French', 'German', 'Spanish'], key = "language_select_1")
     model, tokenizer = get_model_and_tokenizer(language)
 
-    text_to_analyze = st.text_input('Enter text to analyze')
+    text_to_analyze = st.text_input('Enter text to analyze', key = 'text_input_1')
 
     if st.button('Analyze'):
         # Here you would use your model and tokenizer to analyze the input text
@@ -81,8 +81,8 @@ def classify_text(text, language):
 
 st.title("Language Specific Sentiment Analysis")
 
-language = st.selectbox("Select language", ["English", "French", "German", "Spanish"])
-text = st.text_input("Enter text to analyze")
+language = st.selectbox("Select language", ["English", "French", "German", "Spanish"], key= "language_select_2")
+text = st.text_input("Enter text to analyze", key = 'text_input_2')
 
 if st.button("Analyze"):
     sentiment = classify_text(text, language)
@@ -127,7 +127,7 @@ def clean_english_text(text):
 
 def main():
     st.title("Text Sentiment Analysis")
-    text_input = st.text_input("Enter your text here:")
+    text_input = st.text_input("Enter your text here:", key = 'text_input_3')
     if text_input:
         cleaned_text = clean_english_text(text_input)
         tokenizer, model = load_model()
@@ -188,8 +188,8 @@ def clean_text(text, language):
 
 def main():
     st.title("Multilingual Sentiment Analysis")
-    language = st.selectbox("Select language", ["English", "French", "German", "Spanish"])
-    text_input = st.text_input("Enter text to analyze:")
+    language = st.selectbox("Select language", ["English", "French", "German", "Spanish"], key = 'language_select_4')
+    text_input = st.text_input("Enter text to analyze:", key = 'text_input_4')
     if text_input:
         cleaned_text = clean_text(text_input, language)
         model, tokenizer = load_model(language)
