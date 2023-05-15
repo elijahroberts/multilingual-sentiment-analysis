@@ -24,6 +24,7 @@ print(user)
 import streamlit as st
 import nltk
 nltk.download('punkt')
+nltk.download('stopwords')
 import re
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
