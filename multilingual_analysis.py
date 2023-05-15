@@ -81,11 +81,14 @@ def main():
             st.write("Sentiment: neutral 😐")    
         else:
             st.write("Sentiment: negative ☹️")
-     if st.button("Analyze"):
+
+    if st.button("Analyze"):  # Corrected indentation
         sentiment = classify_text(text, language)
         st.write(f"Sentiment: {sentiment}")
 
 
 if __name__ == "__main__":
     main()
+
+
 
