@@ -47,9 +47,9 @@ def load_model(language):
     
     return model, tokenizer
 
-def classify_text(text, language):
-    model, tokenizer = get_model_and_tokenizer(language)
-    inputs = tokenizer(text, padding=True, truncation=True, max_length=128, return_tensors="pt")
+def classify_text(cleaned_text, language):
+    load_model, tokenizer = get_model_and_tokenizer(language)
+    inputs = tokenizer(cleaned_text, padding=True, truncation=True, max_length=128, return_tensors="pt")
     outputs = model(**inputs)
     predictions = outputs.logits.argmax(axis=1)
     return predictions.item()
@@ -79,7 +79,7 @@ def main():
     language = st.selectbox("Select language", ["English", "French", "German", "Spanish"], key = 'language_select_4')
     text_input = st.text_input("Enter text to analyze:", key = 'text_input_4')
 
-    if st.button("Analyze"):  # Corrected indentation
+    if st.button("Analyze"): 
         if text_input:
             cleaned_text = clean_text(text_input, language)
             model, tokenizer = load_model(language)
