@@ -81,19 +81,31 @@ def main():
     language = st.selectbox("Select language", ["English", "French", "German", "Spanish"], key = 'language_select_4')
     text_input = st.text_input("Enter text to analyze:", key = 'text_input_4')
 
-    if st.button("Analyze"): 
+    #if st.button("Analyze"): 
+        #if text_input:
+            #cleaned_text = clean_text(text_input, language)
+            #model, tokenizer = load_model(language)
+            #pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
+            #result = pipeline(cleaned_text)[0]
+            #label = result['label']
+            #if label == 'LABEL_0':
+                #st.write("Sentiment: positive 😄")
+            #elif label == 'LABEL_2':
+                #st.write("Sentiment: neutral 😐")    
+            #else:
+                #st.write("Sentiment: negative ☹️")
+                
+      if st.button("Analyze"): 
         if text_input:
             cleaned_text = clean_text(text_input, language)
-            model, tokenizer = load_model(language)
-            pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
-            result = pipeline(cleaned_text)[0]
-            label = result['label']
-            if label == 'LABEL_0':
-                st.write("Sentiment: positive 😄")
-            elif label == 'LABEL_2':
-                st.write("Sentiment: neutral 😐")    
+            sentiment_label = classify_text(cleaned_text, language)
+            if sentiment_label == 0:
+                 st.write("Sentiment: positive 😄")
+            elif sentiment_label == 2:
+                 st.write("Sentiment: neutral 😐")    
             else:
-                st.write("Sentiment: negative ☹️")
+                 st.write("Sentiment: negative ☹️")
+
       
 
 
